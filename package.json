@@ -1,0 +1,13 @@
+{
+  "name": "gdcore",
+  "version": "1.0.0",
+  "description": "A complete PHP-based Geometry Dash Private Server with **actual GD endpoint files**, based on [Cvolton's GMDprivateServer](https://github.com/Cvolton/GMDprivateServer) structure but with modern utilities.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

@@ -1,0 +1,93 @@
+RewriteEngine On
+
+# Security: Force HTTPS (uncomment for production)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Allow direct access to database endpoints
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Disable directory listing
+Options -Indexes -FollowSymLinks
+
+# Disable server signature
+ServerSignature Off
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    # Content-Security-Policy (adjust as needed)
+    # Header always set Content-Security-Policy "default-src 'self'"
+</IfModule>
+
+# Protect sensitive files
+<FilesMatch "^\.env">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "^\.git">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "composer\.(json|lock)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(md|txt|log|sql|bak|key|pem|crt)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to sensitive directories
+<FilesMatch "^(config|src|vendor|tools|tests|logs|backups)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect configuration files
+<Files "*.ini">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Enable PHP execution in database directory only
+<Directory "database">
+    Options -Indexes
+    <FilesMatch "\.php$">
+        Allow from all
+    </FilesMatch>
+</Directory>
+
+# Allow access to admin panel
+<Directory "admin">
+    Options -Indexes
+    <FilesMatch "\.php$">
+        Allow from all
+    </FilesMatch>
+</Directory>
+
+# Prevent PHP execution in upload directories (if any)
+<DirectoryMatch "^(uploads|cache|sessions)">
+    php_flag engine off
+    RemoveHandler .php
+</DirectoryMatch>
+
+# Limit request methods
+<LimitExcept GET POST>
+    Order deny,allow
+    Deny from all
+</LimitExcept>
+
+# File upload size limits (adjust as needed)
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+php_value max_execution_time 30
+php_value max_input_time 30

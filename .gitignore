@@ -1,0 +1,56 @@
+# Dependencies
+/vendor/
+composer.lock
+
+# Environment & Configuration
+.env
+.env.*
+!.env.example
+
+# Sensitive Data
+/database/backups/
+/logs/
+*.log
+*.sql.gz
+*.sql.bak
+
+# User Data (if stored locally)
+/uploads/
+/cache/
+/sessions/
+
+# Admin sessions
+/admin/sessions/
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temp Files
+*.tmp
+*.temp
+*.cache
+*.pid
+
+# Security
+*.key
+*.pem
+*.crt
+*.p12
+/keys/
+
+# Testing
+/tests/coverage/
+.phpunit.result.cache
+
+# Build artifacts
+/dist/
+/build/
