@@ -25,12 +25,10 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: bot/package-lock.json
     
     - name: Install dependencies
       working-directory: ./bot
-      run: npm ci
+      run: npm install
     
     - name: Check for syntax errors
       working-directory: ./bot
