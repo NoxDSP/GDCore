@@ -151,7 +151,7 @@ If you find GDCore useful, please consider giving it a star!
 
 ---
 
-<p align="center">Made with ❤️ by the GDCore team</p>
+<p align="center">Made with ❤️ by the NoxDSP</p>
 <p align="center">
   <a href="../../">Home</a> •
   <a href="../../issues">Issues</a> •
