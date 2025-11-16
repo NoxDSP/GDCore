@@ -2,7 +2,7 @@
     "name": "noxdsp/gdcore",
     "description": "GDCore - Modern Geometry Dash Private Server based on Cvolton's GMDprivateServer",
     "type": "project",
-    "license": "GPL-3.0",
+    "license": "GPL-3.0-or-later",
     "require": {
         "php": ">=7.4",
         "ext-pdo": "*",
